@@ -1,4 +1,6 @@
-var _ = require('lodash');
+"use strict";
+exports.__esModule = true;
+var _ = require("Lodash");
 var members = [
     { name: 'Laveesh Gupta', age: 20 },
     { name: 'Yash Jangid', age: 40 },
@@ -61,6 +63,7 @@ var obj = {
 };
 console.log(obj);
 // // ques 7 add a new member to same members array instance at index 2
+var data;
 var count = 0;
 Object.keys(members).forEach(function (key) {
     count++;
@@ -94,20 +97,21 @@ var objects = _.each(members, function (value) {
     console.log(value.age);
 });
 //ques 11 rename extracted property of object while destructing 
+var obj3 = [];
+var newArray1 = _.clone(obj3);
 Object.keys(members).forEach(function (key) {
     members[key].id = members[key].age;
     delete members[key].age;
 });
 console.log(members);
 // ques 12   destructure any property of an object and use spread operator to get remaining properties in an object 
-//var arr3: number[]=[];
 var obj3 = [];
+var newArray = _.clone(obj3);
 Object.keys(members).forEach(function (key) {
     obj3.push(members[key].name);
     obj3.push(members[key].age);
 });
-//console.log(...obj3);
-var newArray = _.clone(obj3);
+console.log.apply(console, obj3);
 console.log(obj3);
 // ques 13  create a new object by copying using spread operator, override one of the properties to assign a new value in the same step 
 var result2 = _.clone(members);

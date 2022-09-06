@@ -1,5 +1,11 @@
-const _ = require('lodash')
-const members = [
+import * as _ from "Lodash";
+
+
+export type member = { name: string; age?: number };
+
+
+
+const members: member[] = [
     { name: 'Laveesh Gupta', age: 20 },
     { name: 'Yash Jangid', age: 40 },
     { name: 'Firoz Khan', age: 41 },
@@ -11,7 +17,8 @@ const members = [
 
 // ques 1  get array of first names of everyone 
 
-const firstname = _.map(members, value => {
+const firstname: string[] = _.map(members, value => {
+
     const name = _.split(value.name, " ", 2)
     return name[0]
 })
@@ -20,7 +27,7 @@ console.log(firstname);
 
 // ques 2 Make everyone last name in uppercasein given array of object
 
-const res = _.map(members, function get(value) {
+const res: string[] = _.map(members, function get(value) {
     const names = value.name
 
     const lastindex = names.split(' ')
@@ -36,7 +43,7 @@ const res = _.map(members, function get(value) {
 
 const array = []
 //const array: never[] = []
-const result = _.map(members, function get(value) {
+const result: member[] = _.map(members, function get(value) {
     if (value.age >= 41 && value.age <= 60) {
 
     }
@@ -44,7 +51,7 @@ const result = _.map(members, function get(value) {
 console.log(array);
 
 // ques 4  get average age
-const avg = _.mean([20, 40, 41, 17, 45, 51]);
+const avg: number[] = _.mean([20, 40, 41, 17, 45, 51]);
 
 console.log(avg);
 
@@ -54,7 +61,7 @@ console.log(average);
 
 // ques 5  get person with maximum age
 
-const value = _.find(members, (val) => { return val.age > 50 });
+const value: number[] = _.find(members, (val) => { return val.age > 50 });
 console.log(value);
 
 // ques 6 divide persons in three groups, result should look like { 'young': [], 'old': [], 'age': [] } less than 35yrs is young, above 35 is old 
@@ -84,6 +91,7 @@ console.log(obj);
 
 
 // // ques 7 add a new member to same members array instance at index 2
+var data: string[]
 var count = 0;
 Object.keys(members).forEach(function (key) {
     count++;
@@ -97,14 +105,14 @@ console.log(members);
 // ques 8  extract first and second element using destructing
 
 
-const Obj1 = _.find(members, { name: 'Laveesh Gupta', age: 20 });
-const Obj2 = _.find(members, { name: 'Yash Jangid', age: 40 });
+const Obj1: [string, number] = _.find(members, { name: 'Laveesh Gupta', age: 20 });
+const Obj2: [string, number] = _.find(members, { name: 'Yash Jangid', age: 40 });
 
 console.log(Obj1);
 console.log(Obj2);
 
 //ques 9  create a new array instance adding a  new member at index 0
-const members1 = _.clone(members);
+const members1: string[] = _.clone(members);
 var count = 0;
 Object.keys(members).forEach(function (key) {
     count++;
@@ -118,7 +126,7 @@ console.log(members)
 
 // ques 10  extract properties of object using destructuring 
 
-const result1 = _.every(members, function (value) {
+const result1: [string, number] = _.every(members, function (value) {
     console.log(value.name);
     console.log(value.age);
 
@@ -135,6 +143,8 @@ const objects = _.each(members, function (value) {
 
 
 //ques 11 rename extracted property of object while destructing 
+var obj3: number[] = [];
+const newArray1 = _.clone(obj3);
 Object.keys(members).forEach(function (key) {
     members[key].id = members[key].age;
     delete members[key].age;
@@ -144,21 +154,22 @@ console.log(members);
 
 // ques 12   destructure any property of an object and use spread operator to get remaining properties in an object 
 
-//var arr3: number[]=[];
+
 var obj3: number[] = [];
+const newArray = _.clone(obj3);
 Object.keys(members).forEach(function (key) {
     obj3.push(members[key].name)
     obj3.push(members[key].age)
 });
 
-//console.log(...obj3);
-const newArray = _.clone(obj3);
+console.log(...obj3);
+
 console.log(obj3);
 
 
 // ques 13  create a new object by copying using spread operator, override one of the properties to assign a new value in the same step 
 
-var result2 = _.clone(members)
+var result2: string[] = _.clone(members)
 Object.keys(result2).forEach(function (val) {
     _.set(result2[val], 'Field', 'I.T');
 });
@@ -174,7 +185,7 @@ console.log(...result2);
 
 
 
-const arr = [4, 6, 8, 1, 3];
+const arr: number[] = [4, 6, 8, 1, 3];
 
 
 var values = _.reduce(arr, function sum(acc, curr) {
@@ -184,8 +195,7 @@ var values = _.reduce(arr, function sum(acc, curr) {
 console.log(values);
 
 // IN OBJECT
-
-const obj2 = [
+const obj2: { id: number; name: string }[] = [
     {
         id: 1,
         name: 'amisha'
@@ -208,6 +218,8 @@ var values = _.reduce(values, function sum(acc, curr) {
     return acc + curr.id;
 }, 0);
 console.log(values);
+
+
 
 
 

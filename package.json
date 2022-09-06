@@ -4,6 +4,24 @@
     "typescript": "^4.7.4"
   },
   "devDependencies": {
-    "@types/node": "^18.7.9"
-  }
+    "@types/node": "^18.7.15",
+    "type": "module"
+  },
+  "name": "typescript",
+  "description": "typescript-exercise",
+  "version": "1.0.0",
+  "main": "typescript.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amishalodha/typescript-exercise.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amishalodha/typescript-exercise/issues"
+  },
+  "homepage": "https://github.com/amishalodha/typescript-exercise#readme"
 }
