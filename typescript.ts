@@ -3,8 +3,6 @@ import * as _ from "Lodash";
 
 export type member = { name: string; age?: number };
 
-
-
 const members: member[] = [
     { name: 'Laveesh Gupta', age: 20 },
     { name: 'Yash Jangid', age: 40 },
@@ -17,182 +15,136 @@ const members: member[] = [
 
 // ques 1  get array of first names of everyone 
 
-const firstname: string[] = _.map(members, value => {
+const firstName: string[] = _.map(members, (value) => {
 
     const name = _.split(value.name, " ", 2)
     return name[0]
 })
 
-console.log(firstname);
+console.log(firstName);
 
 // ques 2 Make everyone last name in uppercasein given array of object
 
-const res: string[] = _.map(members, function get(value) {
+const lastNameInUpperCase: string[] = _.map(members, function get(value) {
     const names = value.name
 
     const lastindex = names.split(' ')
     const x = lastindex[0];
     const y = lastindex[1].toLocaleUpperCase()
 
-    const ans = x + ' ' + y
-    console.log(ans)
+    const UpperCase = x + ' ' + y
+    console.log(UpperCase)
+
 })
 
-
-// ques 3  get entries where age is between 41-60
-
-const array = []
-//const array: never[] = []
-const result: member[] = _.map(members, function get(value) {
-    if (value.age >= 41 && value.age <= 60) {
-
-    }
+//ques 3
+//Get entries where age is between 41-60
+const getTheAgeOfMember: member[] = _.filter(members, member => {
+    _.inRange(member.age, 41, 60)
 })
-console.log(array);
-
-// ques 4  get average age
-const avg: number[] = _.mean([20, 40, 41, 17, 45, 51]);
-
-console.log(avg);
-
-const average = _.meanBy(members, (p) => p.age);
-console.log(average);
+console.log(getTheAgeOfMember);
 
 
-// ques 5  get person with maximum age
 
-const value: number[] = _.find(members, (val) => { return val.age > 50 });
-console.log(value);
+//ques 4
+//Get average age
+const getAverageAgeOfMembers: number = _.mean([20, 40, 41, 17, 45, 51]);
+console.log(getAverageAgeOfMembers);
 
-// ques 6 divide persons in three groups, result should look like { 'young': [], 'old': [], 'age': [] } less than 35yrs is young, above 35 is old 
 
-var arr1: number[] = [];
-var arr2: number[] = [];
-var arr3: number[] = [];
-const results = _.map(members, function get(value) {
-    if (value.age < 35) {
-        arr1.push(value.age)
+
+//quest 5
+//Get Person with maximum age
+const getMaximumAgeOfMembers: member = _.maxBy(members, 'age');
+console.log(getMaximumAgeOfMembers);
+
+
+// ques 6 divide persons in three groups, result should look like
+//   { 'young': [], 'old': [], 'age': [] }
+//    less than 35yrs is young,
+//     above 35 is old 
+
+type age = { [x: string]: number[] | undefined }
+const groupMembersByAge: age = _.groupBy(members, (member) => {
+    if (member.age < 35) {
+        return 'young'
     }
-    else if (value.age > 35) {
-        arr2.push(value.age)
+    else if (member.age > 35) {
+        return 'old'
     }
     else {
-        arr3.push(value.age)
+        return 'noage'
     }
-})
-
-
-const obj = {
-    'young': arr1,
-    'old': arr2,
-    'noage': arr3
 }
-console.log(obj);
+)
+console.log(groupMembersByAge);
+
+// ques 7 add a new member to same members array instance at index 
+const addNewArrayOfMemberIndex: member[] = [{ name: 'Amisha Lodha', age: 22 }, ...members]
+console.log(' Array', addNewArrayOfMemberIndex);
 
 
-// // ques 7 add a new member to same members array instance at index 2
-var data: string[]
-var count = 0;
-Object.keys(members).forEach(function (key) {
-    count++;
-    if (count == 2) {
-        _.set(members[key], 'field ', 'IT');
-    }
 
+//ques 8
+//extract first and second element using destructing
+const [a, b, ...rest] = members
+console.log('First and second element: ', a, b);
+console.log('members', rest);
+
+
+
+
+//ques 9 create a new array instance adding a new member at index 0
+const addNewArrayOfMember: member[] = [{ name: 'Amisha Lodha', age: 22 }, ...members]
+console.log(' Array', addNewArrayOfMember);
+
+
+
+//ques 1o
+// Extract properties of object using destructuring
+_.map(members, member => {
+    const { name, age } = member
+    console.log('name of member', name);
+    console.log('age of member', age);
 });
-console.log(members);
-
-// ques 8  extract first and second element using destructing
-
-
-const Obj1: [string, number] = _.find(members, { name: 'Laveesh Gupta', age: 20 });
-const Obj2: [string, number] = _.find(members, { name: 'Yash Jangid', age: 40 });
-
-console.log(Obj1);
-console.log(Obj2);
-
-//ques 9  create a new array instance adding a  new member at index 0
-const members1: string[] = _.clone(members);
-var count = 0;
-Object.keys(members).forEach(function (key) {
-    count++;
-    if (count == 1) {
-        _.set(members[key], 'roll no ', '6');
-    }
-});
-console.log(members)
 
 
 
-// ques 10  extract properties of object using destructuring 
 
-const result1: [string, number] = _.every(members, function (value) {
-    console.log(value.name);
-    console.log(value.age);
-
-
-})
-
-
-const objects = _.each(members, function (value) {
-    console.log(value.name);
-    console.log(value.age);
-
-
-})
 
 
 //ques 11 rename extracted property of object while destructing 
-var obj3: number[] = [];
-const newArray1 = _.clone(obj3);
-Object.keys(members).forEach(function (key) {
-    members[key].id = members[key].age;
-    delete members[key].age;
-});
 
-console.log(members);
+_.map(members, member => {
+    const { name: n, age } = member
+
+    console.log('rename the value', n);
+    console.log(age);
+})
 
 // ques 12   destructure any property of an object and use spread operator to get remaining properties in an object 
 
+const [values, ...rests] = members
+console.log('key: ', values);
+console.log('members', rests);
 
-var obj3: number[] = [];
-const newArray = _.clone(obj3);
-Object.keys(members).forEach(function (key) {
-    obj3.push(members[key].name)
-    obj3.push(members[key].age)
+
+// ques 13 create a new object by copying using spread operator, override one of the properties to assign a new value in the same step
+
+var addingProperty = members.map(key => ({
+    ...key, field: 'I.T'
+
+}))
+console.log(addingProperty);
+
+// ques 14 use reduce function on array and object
+
+const addingTwoNumber = [12, 2].reduce(function (a, b) {
+    return a + b;
 });
-
-console.log(...obj3);
-
-console.log(obj3);
+console.log("sum is :" + addingTwoNumber);
 
 
-// ques 13  create a new object by copying using spread operator, override one of the properties to assign a new value in the same step 
-
-var result2: string[] = _.clone(members)
-Object.keys(result2).forEach(function (val) {
-    _.set(result2[val], 'Field', 'I.T');
-});
-console.log(...result2);
-
-
-
-// ques 14   use reduce function on array and object
-
-
-
-// var _ = require('lodash')
-
-
-
-const arr: number[] = [4, 6, 8, 1, 3];
-
-
-var values = _.reduce(arr, function sum(acc, curr) {
-    return acc + curr
-}, 0)
-
-console.log(values);
 
 // IN OBJECT
 const obj2: { id: number; name: string }[] = [
@@ -214,12 +166,8 @@ const obj2: { id: number; name: string }[] = [
     }
 ];
 
-var values = _.reduce(values, function sum(acc, curr) {
+var id = _.reduce(id, function sum(acc, curr) {
     return acc + curr.id;
 }, 0);
-console.log(values);
-
-
-
-
+console.log(id);
 
